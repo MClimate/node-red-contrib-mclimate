@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    RED.nodes.registerType('vicki-out',{
+        category: 'mclimate',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            dev_eui: {value:""},
+            serial_number: {value:""},
+            vicki_command: {value:"ext_temp"}
+
+        },
+        inputs:1,
+        outputs:0,
+        icon: "mclimate-logo.png",
+        label: function() {
+            return this.name||"Vicki Out";
+        },
+        oneditprepare: function() {
+            $("#node-input-vicki_command").typedInput({
+                types: [
+                    {
+                        value: "set_ext_temp",
+                        options: [
+                            { value: "set_ext_temp", label: "External Temperature"},
+                            { value: "target_temperature", label: "Target Temperature"},
+                            { value: "motor_position", label: "Motor Position"},
+                            { value: "set_keepalive_time", label: "Set Keepalive"},
+                            { value: "recalibrate_motor", label: "Racalibrate Motor"},
+                            { value: "set_range", label: "Set Range"},
+                            { value: "force_close_vicki", label: "Force Close Vicki"},
+                            { value: "set_offline_algo_params", label: "Set Algo Params"},
+                            { value: "set_offline_algo_tdiff_params", label: "Set Algo Tdiff Params"},
+                            { value: "set_uplink_type", label: "Set Uplink Type"},
+                        ]
+                    }
+                ]
+            });
+        }
+    });
+
+
+
+</script>
+
+<script type="text/html" data-template-name="vicki-out">
+    <div class="form-row">
+        <label for="node-input-name"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-serial_number"></i>Serial Number</label>
+        <input type="text" id="node-input-serial_number" placeholder="Serial Number">
+    </div>
+    <div class="form-row">
+        <label for="node-input-dev_eui"></i>Dev EUI</label>
+        <input type="text" id="node-input-dev_eui" placeholder="Dev EUI">
+    </div>
+    <div class="form-row">
+        <label for="node-input-vicki_command"></i>Command to send</label>
+        <input type="text" id="node-input-vicki_command">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="vicki-out">
+    <p>Node that recieve uplink from Vicki</p>
+</script>
